@@ -1,0 +1,30 @@
+pool: 'Hosted VS2017'
+
+variables:
+  - group: subscription-info
+  - name: blueprintsPath
+    value: '.\blueprints\'
+  - name: blueprintName
+    value: 'win-main-blueprint'
+
+trigger:
+  branches:
+    include:
+    - master
+    - dev
+  paths:
+    exclude:
+    - README.md
+    - LICENSE
+    - NOTICE
+    - .gitignore
+
+steps:
+
+- task: CreateBlueprint@1
+  inputs:
+    azureSubscription: $(spnName)
+    BlueprintName: $(blueprintName)
+    BlueprintPath: '$(blueprintsPath)$(blueprintName)'
+    AlternateLocation: false
+    PublishBlueprint: true
