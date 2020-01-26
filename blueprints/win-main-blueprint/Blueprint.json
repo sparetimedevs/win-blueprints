@@ -18,6 +18,38 @@
         },
         "defaultValue": "replace@this.com",
         "allowedValues": []
+      },
+      "winFunctionAppServiceTemplateWinFunctionAppName": {
+        "type": "string",
+        "metadata": {
+          "displayName": "WIN Function App name"
+        },
+        "defaultValue": "win-function-app",
+        "allowedValues": []
+      },
+      "winFunctionAppServiceTemplateStorageAccountConnectionString": {
+        "type": "string",
+        "metadata": {
+          "displayName": "WIN Function App Storage Account connection string"
+        },
+        "defaultValue": "override-with-a-storage-account-connection-string",
+        "allowedValues": []
+      },
+      "winFunctionAppServiceTemplateMongoDbConnectionString": {
+        "type": "string",
+        "metadata": {
+          "displayName": "WIN Function App MongoDB connection string"
+        },
+        "defaultValue": "override-with-a-mongo-db-connection-string",
+        "allowedValues": []
+      },
+      "winStorageAccountTemplateWinStorageAccountName": {
+        "type": "string",
+        "metadata": {
+          "displayName": "WIN Storage Account name"
+        },
+        "defaultValue": "winstorageaccount",
+        "allowedValues": []
       }
     },
     "resourceGroups": {
