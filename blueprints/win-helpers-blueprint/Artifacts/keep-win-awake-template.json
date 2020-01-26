@@ -102,6 +102,7 @@
                     },
                     "outputs": {}
                 },
+                "resourceGroup": "winHelpersResourceGroup",
                 "parameters": {
                     "keepWinAwakeServiceName": {
                         "value": "[parameters('keepWinAwakeServiceName')]"

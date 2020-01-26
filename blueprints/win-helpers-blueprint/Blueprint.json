@@ -13,7 +13,7 @@
         }
     },
     "resourceGroups": {
-      "winResourceGroup": {
+      "winHelpersResourceGroup": {
         "metadata": {
           "displayName": "WIN helpers resource group",
           "description": "This is the  resource group for the helper resources for WIN application."
