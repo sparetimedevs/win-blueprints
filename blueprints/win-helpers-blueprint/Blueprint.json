@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "description": "This is the blueprint for all WIN helpers.",
+    "targetScope": "subscription",
+    "parameters": {
+        "keepWinAwakeServiceName": {
+            "type": "string",
+            "metadata": {
+            "displayName": "Keep WIN Awake name"
+            },
+            "defaultValue": "keep-win-awake",
+            "allowedValues": []
+        }
+    },
+    "resourceGroups": {
+      "winResourceGroup": {
+        "metadata": {
+          "displayName": "WIN helpers resource group",
+          "description": "This is the  resource group for the helper resources for WIN application."
+        },
+        "dependsOn": []
+      }
+    }
+  },
+  "type": "Microsoft.Blueprint/blueprints" 
+}

@@ -5,7 +5,7 @@ variables:
   - name: blueprintsPath
     value: '.\blueprints\'
   - name: blueprintName
-    value: 'win-main-blueprint'
+    value: 'win-helpers-blueprint'
 
 steps:
 - task: CreateBlueprint@1
