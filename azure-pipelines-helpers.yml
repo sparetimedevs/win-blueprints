@@ -1,0 +1,17 @@
+pool: 'Hosted VS2017'
+
+variables:
+  - group: subscription-info
+  - name: blueprintsPath
+    value: '.\blueprints\'
+  - name: blueprintName
+    value: 'win-helpers-blueprint'
+
+steps:
+- task: CreateBlueprint@1
+  inputs:
+    azureSubscription: $(spnName)
+    BlueprintName: $(blueprintName)
+    BlueprintPath: '$(blueprintsPath)$(blueprintName)'
+    AlternateLocation: false
+    PublishBlueprint: true
