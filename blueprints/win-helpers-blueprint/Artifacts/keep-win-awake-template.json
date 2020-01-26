@@ -1,114 +1,122 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
+  "kind": "template",
+  "properties": {
+    "displayName": "win-apim-service-template",
+    "description": "",
+    "dependsOn": [],
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
         "keepWinAwakeServiceName": {
-            "defaultValue": "keep-win-awake",
-            "type": "String"
+          "defaultValue": "keep-win-awake",
+          "type": "String"
         }
-    },
-    "variables": {},
-    "resources": [
+      },
+      "variables": {},
+      "resources": [
         {
-            "type": "Microsoft.Logic/workflows",
-            "apiVersion": "2017-07-01",
-            "name": "[parameters('keepWinAwakeServiceName')]",
-            "location": "westeurope",
-            "properties": {
-                "state": "Enabled",
-                "definition": {
-                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {},
-                    "triggers": {
-                        "manual": {
-                            "type": "Request",
-                            "kind": "Http",
-                            "inputs": {
-                                "schema": {
-                                    "do": "it"
-                                }
-                            }
-                        }
-                    },
-                    "actions": {
-                        "Initialize_variable": {
-                            "runAfter": {},
-                            "type": "InitializeVariable",
-                            "inputs": {
-                                "variables": [
-                                    {
-                                        "name": "counter",
-                                        "type": "integer",
-                                        "value": 0
-                                    }
-                                ]
-                            }
-                        },
-                        "Until": {
-                            "actions": {
-                                "Delay": {
-                                    "runAfter": {
-                                        "HTTP": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "Wait",
-                                    "inputs": {
-                                        "interval": {
-                                            "count": 14,
-                                            "unit": "Minute"
-                                        }
-                                    }
-                                },
-                                "HTTP": {
-                                    "runAfter": {},
-                                    "type": "Http",
-                                    "inputs": {
-                                        "headers": {
-                                            "Api-Version": "v1",
-                                            "Host": "sparetimedevs.azure-api.net",
-                                            "Ocp-Apim-Subscription-Key": "97846a08da3148258811969ef55b4752",
-                                            "Ocp-Apim-Trace": "true"
-                                        },
-                                        "method": "GET",
-                                        "uri": "https://sparetimedevs.azure-api.net/win/candidates"
-                                    }
-                                },
-                                "Increment_variable": {
-                                    "runAfter": {
-                                        "Delay": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "IncrementVariable",
-                                    "inputs": {
-                                        "name": "counter"
-                                    }
-                                }
-                            },
-                            "runAfter": {
-                                "Initialize_variable": [
-                                    "Succeeded"
-                                ]
-                            },
-                            "expression": "@greaterOrEquals(variables('counter'), 7)",
-                            "limit": {
-                                "count": 10,
-                                "timeout": "PT1H"
-                            },
-                            "type": "Until"
-                        }
-                    },
-                    "outputs": {}
-                },
-                "resourceGroup": "winHelpersResourceGroup",
-                "parameters": {
-                    "keepWinAwakeServiceName": {
-                        "value": "[parameters('keepWinAwakeServiceName')]"
+          "type": "Microsoft.Logic/workflows",
+          "apiVersion": "2017-07-01",
+          "name": "[parameters('keepWinAwakeServiceName')]",
+          "location": "westeurope",
+          "properties": {
+            "state": "Enabled",
+            "definition": {
+              "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {},
+              "triggers": {
+                "manual": {
+                  "type": "Request",
+                  "kind": "Http",
+                  "inputs": {
+                    "schema": {
+                      "do": "it"
                     }
+                  }
                 }
+              },
+              "actions": {
+                "Initialize_variable": {
+                  "runAfter": {},
+                  "type": "InitializeVariable",
+                  "inputs": {
+                    "variables": [
+                      {
+                        "name": "counter",
+                        "type": "integer",
+                        "value": 0
+                      }
+                    ]
+                  }
+                },
+                "Until": {
+                  "actions": {
+                    "Delay": {
+                      "runAfter": {
+                        "HTTP": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "Wait",
+                      "inputs": {
+                        "interval": {
+                          "count": 14,
+                          "unit": "Minute"
+                        }
+                      }
+                    },
+                    "HTTP": {
+                      "runAfter": {},
+                      "type": "Http",
+                      "inputs": {
+                        "headers": {
+                          "Api-Version": "v1",
+                          "Host": "sparetimedevs.azure-api.net",
+                          "Ocp-Apim-Subscription-Key": "97846a08da3148258811969ef55b4752",
+                          "Ocp-Apim-Trace": "true"
+                        },
+                        "method": "GET",
+                        "uri": "https://sparetimedevs.azure-api.net/win/candidates"
+                      }
+                    },
+                    "Increment_variable": {
+                      "runAfter": {
+                        "Delay": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "IncrementVariable",
+                      "inputs": {
+                        "name": "counter"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Initialize_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": "@greaterOrEquals(variables('counter'), 7)",
+                  "limit": {
+                    "count": 10,
+                    "timeout": "PT1H"
+                  },
+                  "type": "Until"
+                }
+              },
+              "outputs": {}
             }
+          }
         }
-    ]
+      ]
+    },
+    "resourceGroup": "winHelpersResourceGroup",
+    "parameters": {
+      "keepWinAwakeServiceName": {
+        "value": "[parameters('keepWinAwakeServiceName')]"
+      }
+    }
+  }
 }
