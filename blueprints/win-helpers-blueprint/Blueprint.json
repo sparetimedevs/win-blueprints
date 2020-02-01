@@ -3,14 +3,30 @@
     "description": "This is the blueprint for all WIN helpers.",
     "targetScope": "subscription",
     "parameters": {
-        "keepWinAwakeServiceName": {
-            "type": "string",
-            "metadata": {
-            "displayName": "Keep WIN Awake name"
-            },
-            "defaultValue": "keep-win-awake",
-            "allowedValues": []
-        }
+      "keepWinAwakeServiceName": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Keep WIN Awake name"
+        },
+        "defaultValue": "keep-win-awake",
+        "allowedValues": []
+      },
+      "winApimBaseUrl": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Base url of the APIM"
+        },
+        "defaultValue": "override-with-a-base-url",
+        "allowedValues": []
+      },
+      "winOcpApimSubscriptionKey": {
+        "type": "string",
+        "metadata": {
+          "displayName": "Ocp APIM subscription key"
+        },
+        "defaultValue": "override-with-a-key",
+        "allowedValues": []
+      }
     },
     "resourceGroups": {
       "winHelpersResourceGroup": {

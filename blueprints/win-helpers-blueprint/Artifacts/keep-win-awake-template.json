@@ -11,6 +11,14 @@
         "keepWinAwakeServiceName": {
           "defaultValue": "keep-win-awake",
           "type": "String"
+        },
+        "winApimBaseUrl": {
+          "defaultValue": "override-with-a-base-url",
+          "type": "String"
+        },
+        "winOcpApimSubscriptionKey": {
+          "defaultValue": "override-with-a-key",
+          "type": "String"
         }
       },
       "variables": {},
@@ -74,11 +82,11 @@
                         "headers": {
                           "Api-Version": "v1",
                           "Host": "sparetimedevs.azure-api.net",
-                          "Ocp-Apim-Subscription-Key": "97846a08da3148258811969ef55b4752",
+                          "Ocp-Apim-Subscription-Key": "[parameters('winOcpApimSubscriptionKey')]",
                           "Ocp-Apim-Trace": "true"
                         },
                         "method": "GET",
-                        "uri": "https://sparetimedevs.azure-api.net/win/candidates"
+                        "uri": "[concat(parameters('winApimBaseUrl'), '/win/candidates')]"
                       }
                     },
                     "Increment_variable": {
@@ -116,6 +124,12 @@
     "parameters": {
       "keepWinAwakeServiceName": {
         "value": "[parameters('keepWinAwakeServiceName')]"
+      },
+      "winApimBaseUrl": {
+        "value": "[parameters('winApimBaseUrl')]"
+      },
+      "winOcpApimSubscriptionKey": {
+        "value": "[parameters('winOcpApimSubscriptionKey')]"
       }
     }
   }
