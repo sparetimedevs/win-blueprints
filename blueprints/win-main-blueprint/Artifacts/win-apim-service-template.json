@@ -63,5 +63,6 @@
         "value": "[parameters('winApimServiceTemplateWinApimPublisherEmail')]"
       }
     }
-  }
+  },
+  "type": "Microsoft.Blueprint/blueprints/artifacts"
 }

@@ -222,11 +222,12 @@
         "value": "[parameters('winFunctionAppServiceTemplateWinFunctionAppName')]"
       },
       "storageAccountConnectionString": {
-        "value": "[parameters('winFunctionAppServiceTemplateStorageAccountConnectionString')]"
+        "value": "[artifacts('win-storage-account-template').outputs.storageAccountConnectionString]"
       },
       "mongoDbConnectionString": {
         "value": "[parameters('winFunctionAppServiceTemplateMongoDbConnectionString')]"
       }
     }
-  }
+  },
+  "type": "Microsoft.Blueprint/blueprints/artifacts"
 }
